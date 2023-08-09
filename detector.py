@@ -13,14 +13,29 @@ mcreatorMods = []
 #The main method of the script that searches through all of the mods in the user specified folder
 def find_mcreator_mods(moddir):
     for file in os.listdir(moddir):
+        isdefinetlymcreator = False
+        isprobablymcreator = False
         os.chdir(moddir)
         if fnmatch(file, "*.jar"):
             jarfile = zipfile.ZipFile(file, "r")
-            ismcreator = any(mdir.startswith(CREATOR_DIR.rstrip("/")) for mdir in jarfile.namelist())
+            prob = 0
+            for mdir in jarfile.namelist():
+                isdefinetlymcreator = mdir.startswith(CREATOR_DIR.rstrip("/"))
+                if mdir.find("Elements$") >= 1:
+                    prob += 1
+                    print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
+                if mdir.find("Variables$") >= 1:
+                    prob += 1
+                    print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
+            if prob >= 3:
+                isprobablymcreator = True
             jarfile.close()
-            if ismcreator:
+            if isdefinetlymcreator:
                 mcreatorMods.append(file)
                 print("mcreator mod found: " + file)
+            elif isprobablymcreator:
+                mcreatorMods.append(file)
+                print("possible mcreator mod found: " + file)
     if not mcreatorMods:
         print("No mcreator mods found")
 

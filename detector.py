@@ -21,6 +21,8 @@ def find_mcreator_mods(moddir):
             if ismcreator:
                 mcreatorMods.append(file)
                 print("mcreator mod found: " + file)
+    if not mcreatorMods:
+        print("No mcreator mods found")
 
 if __name__ == "__main__":
     directory = input("Please specify the directory you want to search for mcreator mods in: ")

@@ -78,9 +78,11 @@ def find_mcreator_mods(moddir):
             print("+" + find_whitespace(mostCharsB,"line") + "+\n")
             print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
             print("FINAL VERDICT:")
-            if len(possibleMcreatorMods) + len(mcreatorMods) >= 10:
-                print("You really need to rethink your life choices. That's just, stop it. get some help. You're going to have serious preformance problems.")
-            elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 5:
+            if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
+                print("You really need to rethink your life choices. That's just, A LOT OF MCREATOR MODS. stop it. get some help. Nobody is going to want to play this PC killer. https://www.youtube.com/watch?v=l60MnDJklnM")
+            elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
+                print("Make sure to read the descriptions and comments on the mods you are adding. You have too many MCreator mods installed, and you will have preformance issues.")
+            elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
                 print("That's quite a few potential MCreator mods. Think about what you want to remove.")
             elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
                 print("You have a few potential MCreator mods. please note that they more often then not cause preformance issues.")

@@ -43,12 +43,10 @@ def find_mcreator_mods(moddir):
             if isdefinetlymcreator:
                 mcreatorMods.append(file)
                 mostCharsA = len(file) if mostCharsA < len(file) else mostCharsA
-                print(mostCharsA)
                 print("mcreator mod found: " + file)
             elif isprobablymcreator:
                 possibleMcreatorMods.append(file)
                 mostCharsB = len(file) if mostCharsB < len(file) else mostCharsB
-                print(mostCharsB)
                 possibleMcreatorModsprob.append(prob/6.10)
                 print("possible mcreator mod found: " + file)
     print("-----------------------------------------------------------\n")
@@ -58,8 +56,6 @@ def find_mcreator_mods(moddir):
         webbrowser.open("https://youtu.be/UeFTkveHajE?t=18")
         return
     else:
-        print(mostCharsA)
-        print(mostCharsB)
         mostChars = mostCharsB if mostCharsA < mostCharsB else mostCharsA
         print(find_whitespace(int(mostChars / 2) + 2, "equal") + "RESULTS" + find_whitespace(
             int(mostChars / 2) + 3, "equal"))

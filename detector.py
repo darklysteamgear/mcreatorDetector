@@ -32,10 +32,10 @@ def find_mcreator_mods(moddir):
             if not isdefinetlymcreator:
                 for mdir in jarfile.namelist():
                     if mdir.find("Elements") and mdir.find("ModElement") >= 1:
-                        prob += 1
+                        prob = prob + 1
                         print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
                     if mdir.find("Variables$") >= 1:
-                        prob += 1
+                        prob = prob + 1
                         print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
             if prob >= 3:
                 isprobablymcreator = True
@@ -43,10 +43,12 @@ def find_mcreator_mods(moddir):
             if isdefinetlymcreator:
                 mcreatorMods.append(file)
                 mostCharsA = len(file) if mostCharsA < len(file) else mostCharsA
+                print(mostCharsA)
                 print("mcreator mod found: " + file)
             elif isprobablymcreator:
                 possibleMcreatorMods.append(file)
                 mostCharsB = len(file) if mostCharsB < len(file) else mostCharsB
+                print(mostCharsB)
                 possibleMcreatorModsprob.append(prob/6.10)
                 print("possible mcreator mod found: " + file)
     print("-----------------------------------------------------------\n")
@@ -56,29 +58,35 @@ def find_mcreator_mods(moddir):
         webbrowser.open("https://youtu.be/UeFTkveHajE?t=18")
         return
     else:
+        print(mostCharsA)
+        print(mostCharsB)
         mostChars = mostCharsB if mostCharsA < mostCharsB else mostCharsA
-        print(find_whitespace(int(mostChars / 2) - 2, "equal") + "RESULTS" + find_whitespace(
-            int(mostChars / 2) - 3, "equal"))
+        print(find_whitespace(int(mostChars / 2) + 2, "equal") + "RESULTS" + find_whitespace(
+            int(mostChars / 2) + 3, "equal"))
         if mcreatorMods:
-            print("+" + find_whitespace(mostCharsA, "line") + "+")
-            print("|Mods 100% made with MCreator" + find_whitespace(mostCharsA-28,"empty")+"|\n"
-                  "|" + find_whitespace(mostCharsA,"plus") + "|")
+            print("+" + find_whitespace(mostCharsA+5, "line") + "+")
+            print("|Mods 100% made with MCreator" + find_whitespace(mostCharsA-28+5,"empty")+"|\n"
+                  "|" + find_whitespace(mostCharsA+5,"plus") + "|")
             i = 0
             for stupidmod in mcreatorMods:
-                stupidsize = len(stupidmod) + 4
-                print("| " +str(i + 1) + ") " +stupidmod + find_whitespace(mostCharsA-stupidsize,"empty")+"|")
+                number = i + 1
+                subtractor = len(str(number))
+                stupidsize = len(stupidmod) - 2 + subtractor
+                print("| " +str(number) + ") " +stupidmod + find_whitespace(mostCharsA-stupidsize,"empty")+"|")
                 i=i+1
-            print("|" + find_whitespace(mostCharsA, "line") + "|\n")
-            print("+" + find_whitespace(mostCharsB, "line") + "+")
+            print("|" + find_whitespace(mostCharsA+5, "line") + "|\n")
+            print("+" + find_whitespace(mostCharsB+5, "line") + "+")
         if possibleMcreatorMods:
-            print("|Mods that are probably made with MCreator" + find_whitespace(mostCharsB-41,"empty") + "|\n"
-                  "|" + find_whitespace(mostCharsB,"line") + "|")
+            print("|Mods that are probably made with MCreator" + find_whitespace(mostCharsB-41+5,"empty") + "|\n"
+                  "|" + find_whitespace(mostCharsB+5,"line") + "|")
             i = 0
             for stupidmod in possibleMcreatorMods:
-                stupidsize = len(stupidmod) + 4
-                print ("| " + str(i + 1) + ") " + stupidmod + find_whitespace(mostCharsB-stupidsize,"empty") + "| CHANCE: "+str(round(possibleMcreatorModsprob[i] * 100)) + "%")
+                number = i+1
+                subtractor = len(str(number - 1))
+                stupidsize = len(stupidmod) -2 + subtractor
+                print ("| " + str(number) + ") " + stupidmod + find_whitespace(mostCharsB-stupidsize,"empty") + "| CHANCE: "+str(round(possibleMcreatorModsprob[i] * 100)) + "%")
                 i=i+ 1
-            print("+" + find_whitespace(mostCharsB,"line") + "+\n")
+            print("+" + find_whitespace(mostCharsB+5,"line") + "+\n")
             print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
             print("FINAL VERDICT:")
             if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:

@@ -65,6 +65,7 @@ def find_mcreator_mods(moddir):
             for stupidmod in mcreatorMods:
                 stupidsize = len(stupidmod) + 4
                 print("| " +str(i + 1) + ") " +stupidmod + find_whitespace(mostCharsA-stupidsize,"empty")+"|")
+                i=+1
             print("|" + find_whitespace(mostCharsA, "line") + "|\n")
             print("+" + find_whitespace(mostCharsB, "line") + "+")
         if possibleMcreatorMods:
@@ -74,7 +75,7 @@ def find_mcreator_mods(moddir):
             for stupidmod in possibleMcreatorMods:
                 stupidsize = len(stupidmod) + 4
                 print ("| " + str(i + 1) + ") " + stupidmod + find_whitespace(mostCharsB-stupidsize,"empty") + "| CHANCE: "+str(round(possibleMcreatorModsprob[i] * 100)) + "%")
-                i+= 1
+                i=+ 1
             print("+" + find_whitespace(mostCharsB,"line") + "+\n")
             print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
             print("FINAL VERDICT:")

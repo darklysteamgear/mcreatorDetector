@@ -80,11 +80,11 @@ def find_mcreator_mods(moddir):
             print("FINAL VERDICT:")
             if len(possibleMcreatorMods) + len(mcreatorMods) >= 10:
                 print("You really need to rethink your life choices. That's just, stop it. get some help. You're going to have serious preformance problems.")
-            elif 3 < len(possibleMcreatorMods) + len(mcreatorMods) >= 5:
+            elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 5:
                 print("That's quite a few potential MCreator mods. Think about what you want to remove.")
-            elif 1 < len(possibleMcreatorMods) + len(mcreatorMods) >= 3:
+            elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
                 print("You have a few potential MCreator mods. please note that they more often then not cause preformance issues.")
-            elif len(possibleMcreatorMods) + len(mcreatorMods) >= 1:
+            elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
                 print("You have one MCreator mod. It may be the sole cause of your preformance issues. Try to remove it if you are having issues.")
 
 

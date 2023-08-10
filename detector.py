@@ -74,7 +74,7 @@ def find_mcreator_mods(moddir):
                 stupidsize = len(stupidmod) - 2 + subtractor
                 print("| " +str(number) + ") " +stupidmod + find_whitespace(mostCharsA-stupidsize,"empty")+"|")
                 i=i+1
-            print("|" + find_whitespace(mostCharsA+5, "line") + "|\n")
+            print("+" + find_whitespace(mostCharsA+5, "line") + "+\n")
             print("+" + find_whitespace(mostCharsB+5, "line") + "+")
         if possibleMcreatorMods:
             print("|Mods that are probably made with MCreator" + find_whitespace(mostCharsB-41+5,"empty") + "|\n"

@@ -31,6 +31,10 @@ def find_mcreator_mods(moddir):
             isdefinetlymcreator = any(mdir.startswith(CREATOR_DIR.rstrip("/")) for mdir in jarfile.namelist())
             if not isdefinetlymcreator:
                 for mdir in jarfile.namelist():
+                    if mdir.find("mcreator") >= 1:
+                        prob = prob + 10
+                        isdefinetlymcreator = True
+                        break
                     if mdir.find("Elements") and mdir.find("ModElement") >= 1:
                         prob = prob + 1
                         print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
@@ -39,11 +43,13 @@ def find_mcreator_mods(moddir):
                         print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
             if prob >= 3:
                 isprobablymcreator = True
+            if prob >= 7:
+                isdefinetlymcreator = True
             jarfile.close()
             if isdefinetlymcreator:
                 mcreatorMods.append(file)
                 mostCharsA = len(file) if mostCharsA < len(file) else mostCharsA
-                print("mcreator mod found: " + file)
+                print("MCreator mod found: " + file)
             elif isprobablymcreator:
                 possibleMcreatorMods.append(file)
                 mostCharsB = len(file) if mostCharsB < len(file) else mostCharsB

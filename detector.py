@@ -5,7 +5,6 @@ import math
 import zipfile
 import os
 from fnmatch import fnmatch
-import webbrowser
 
 #Globals, saves all mod names to an array called mcreatorMods
 CREATOR_DIR = "net/mcreator"
@@ -81,7 +80,6 @@ def find_mcreator_mods(moddir):
     if not mcreatorMods and not possibleMcreatorMods:
         print("FINAL VERDICT:")
         print("No MCreator mods found, you are certified free of MCreator lag :D")
-        webbrowser.open("https://youtu.be/UeFTkveHajE?t=18")
         return
     else:
         #Sets the number of characters that the boxes for the console GUI should have.
@@ -124,19 +122,14 @@ def find_mcreator_mods(moddir):
         print("FINAL VERDICT:")
         if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
             print("You really need to rethink your life choices. That's just, A LOT OF MCREATOR MODS. stop it. get some help. Nobody is going to want to play this PC killer.")
-            webbrowser.open("https://www.youtube.com/watch?v=l60MnDJklnM")
         elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
             print("Make sure to read the descriptions and comments on the mods you are adding. You have too many MCreator mods installed, and you will have preformance issues.")
-            webbrowser.open("https://www.youtube.com/watch?v=5W-J6iPyZmM")
         elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
             print("That's quite a few potential MCreator mods. Think about what you want to remove.")
-            webbrowser.open("https://www.youtube.com/watch?v=HAoQdrwFK8U")
         elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
             print("You have a few potential MCreator mods. please note that they more often then not cause preformance issues.")
-            webbrowser.open("https://www.youtube.com/watch?v=LISrjmodGSE")
         elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
             print("You have one MCreator mod. It may be the sole cause of your preformance issues. Try to remove it if you are having issues.")
-            webbrowser.open("https://www.youtube.com/watch?v=KnhXwlFeRP8")
 
         print("=" + find_whitespace(mostChars, "equal") + "=\n")
         #This is your redemption. it will delete each mcreator mod it found based on your go ahead.
@@ -176,22 +169,16 @@ def find_mcreator_mods(moddir):
         print("ULTIMATE VERDICT:")
         if len(possibleMcreatorMods) + len(mcreatorMods) - sub >= 16:
             print("YOU  NEED TO LET GO. YOU HAVE A PROBLEM. At this point, you're doing this on purpose. Stop it, get some help.")
-            webbrowser.open("https://www.youtube.com/watch?v=xhV_GMslNkc")
         elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 15:
             print("...Removing only a few of these types of mods is not going to help you. You really should run this again.")
-            webbrowser.open("https://www.youtube.com/watch?v=NzishIREebw")
         elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 8:
             print("I hope you know what you're doing.")
-            webbrowser.open("https://www.youtube.com/watch?v=0vEfDtV1MQU")
         elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 3:
             print("Better... Let's hope!")
-            webbrowser.open("https://www.youtube.com/watch?v=yDSNJr__OiQ")
         elif (len(possibleMcreatorMods) + len(mcreatorMods))- sub == 1:
             print("Good job, this might just work now.")
-            webbrowser.open("https://www.youtube.com/watch?v=aAwaxTGnkSk")
         else:
             print("YOU HAVE BEEN FREED OF MCREATOR WOO!!!")
-            webbrowser.open("https://www.youtube.com/watch?v=CBEvfZu4HE4")
 
 #A function to help create lines for the console GUI. takes the amount of whitespace, and the type of whitespace you want to create for said line
 def find_whitespace(whitespace, type):

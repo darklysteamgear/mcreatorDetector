@@ -21,20 +21,35 @@ def find_mcreator_mods(moddir):
     global mostCharsA
     global mostCharsB
     print("\n----------------------------LOG----------------------------")
+    #Search for every file in the mods folder directory
     for file in os.listdir(moddir):
+        #Booleans instantiated to be set later on in the code for determining MCreator status
         isdefinetlymcreator = False
         isprobablymcreator = False
+        #Change the directory to the mod directory for easier file manipulation
         os.chdir(moddir)
+        #Checks if the file it is currently looking at is a jar file
         if fnmatch(file, "*.jar"):
+            #Instantiate loacal variables within this section of the function
             jarfile = zipfile.ZipFile(file, "r")
             prob = 0
+            #Checks through for any directory with net/mcreator inside of the jar file.
             isdefinetlymcreator = any(mdir.startswith(CREATOR_DIR.rstrip("/")) for mdir in jarfile.namelist())
+            #If it is not 100% MCreator mod, begin looping through and checking for certain cases that all
+            #mods made with MCreator have. You can't hide from this tool
             if not isdefinetlymcreator:
                 for mdir in jarfile.namelist():
+                    #In the case where a mod has a class named mcreator, but not the net/mcreator directory.
                     if mdir.find("mcreator") >= 1:
                         prob = prob + 10
                         isdefinetlymcreator = True
                         break
+                    #ModElement, Element, Variables$ are known classnames of MCreator mods, which will be flagged
+                    #And given points to the probability score for a mod to be made with MCreator
+                    #Since there are some mods that are not made with mcreator
+                    #That may have these class names
+                    #A mod needs 3 points before it is considered possibly mcreator
+                    #Since MCreator mods have 6 classes with the above stated names.
                     if mdir.find("Elements") and mdir.find("ModElement") >= 1:
                         prob = prob + 1
                         print("Possible mcreator class found in modfile: " + file + " class: " + mdir)
@@ -46,30 +61,42 @@ def find_mcreator_mods(moddir):
             if prob >= 7:
                 isdefinetlymcreator = True
             jarfile.close()
+            #If it is a definite MCreator mod, add it to the list of mcreator mods, and print it to the console.
             if isdefinetlymcreator:
                 mcreatorMods.append(file)
+                #This line is for the basic fancy console GUI I have created. basically for caluculating where the lines should go
+                #To make the boxes neat
                 mostCharsA = len(file) if mostCharsA < len(file) else mostCharsA
                 print("MCreator mod found: " + file)
+            # Else if it is probably an mcreator mod, create a probability and append the file to the possible list
             elif isprobablymcreator:
                 possibleMcreatorMods.append(file)
+                #This line is for the basic fancy console GUI I have created. basically for caluculating where the lines should go
+                #To make the boxes neat
                 mostCharsB = len(file) if mostCharsB < len(file) else mostCharsB
                 possibleMcreatorModsprob.append(prob/6.10)
                 print("possible mcreator mod found: " + file)
     print("-----------------------------------------------------------\n")
+    #If there are no flagged mods, YOU BALLIN!!!
     if not mcreatorMods and not possibleMcreatorMods:
         print("FINAL VERDICT:")
         print("No MCreator mods found, you are certified free of MCreator lag :D")
         webbrowser.open("https://youtu.be/UeFTkveHajE?t=18")
         return
     else:
+        #Sets the number of characters that the boxes for the console GUI should have.
         mostChars = mostCharsB if mostCharsA < mostCharsB else mostCharsA
+        #This finds the whitespace for the console GUI to make it look neater
         print(find_whitespace(int(mostChars / 2) + 2, "equal") + "RESULTS" + find_whitespace(
             int(mostChars / 2) + 3, "equal"))
+        #Console GUI output to show you all definitive mcreator mods
         if mcreatorMods:
             print("+" + find_whitespace(mostCharsA+5, "line") + "+")
             print("|Mods 100% made with MCreator" + find_whitespace(mostCharsA-28+5,"empty")+"|\n"
                   "|" + find_whitespace(mostCharsA+5,"plus") + "|")
             i = 0
+            #For every mod that is a stupid mcreator mod, print them out and add the appropriate character
+            #To make a neat looking console GUI
             for stupidmod in mcreatorMods:
                 number = i + 1
                 subtractor = len(str(number))
@@ -78,10 +105,13 @@ def find_mcreator_mods(moddir):
                 i=i+1
             print("+" + find_whitespace(mostCharsA+5, "line") + "+\n")
             print("+" + find_whitespace(mostCharsB+5, "line") + "+")
+        #Console GUI output to show you all possible mcreator mods with their probabilities for being mcreator
         if possibleMcreatorMods:
             print("|Mods that are probably made with MCreator" + find_whitespace(mostCharsB-41+5,"empty") + "|\n"
                   "|" + find_whitespace(mostCharsB+5,"line") + "|")
             i = 0
+            #For every mod that is a stupid possible mcreator mod, print them out and add the appropriate character
+            #To make a neat looking console GUI
             for stupidmod in possibleMcreatorMods:
                 number = i+1
                 subtractor = len(str(number - 1))
@@ -89,6 +119,7 @@ def find_mcreator_mods(moddir):
                 print ("| " + str(number) + ") " + stupidmod + find_whitespace(mostCharsB-stupidsize,"empty") + "| CHANCE: "+str(round(possibleMcreatorModsprob[i] * 100)) + "%")
                 i=i+ 1
             print("+" + find_whitespace(mostCharsB+5,"line") + "+\n")
+        #Final verdict statements. these will determine the fate of your modpack and judge you accordingly.
         print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
         print("FINAL VERDICT:")
         if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
@@ -108,7 +139,54 @@ def find_mcreator_mods(moddir):
             webbrowser.open("https://www.youtube.com/watch?v=KnhXwlFeRP8")
 
         print("=" + find_whitespace(mostChars, "equal") + "=\n")
+        #This is your redemption. it will delete each mcreator mod it found based on your go ahead.
+        deleteMods = False
+        deletePossibleMods = False
+        if mcreatorMods:
+            deleteMods = True if "Y" in input("Delete MCreator mods from your mods list? (You will be prompted for each mod). You have " + str(len(mcreatorMods)) + " MCreator mods. y/n: ").upper() else False
+        if possibleMcreatorMods:
+            deletePossibleMods = True if "Y" in input("Delete Possible MCreator mods from your mods list? (You will be prompted for each mod). You have " + str(len(possibleMcreatorMods)) + " Possible MCreator mods. y/n: ").upper() else False
+        if deleteMods:
+            for file in mcreatorMods:
+                deleteMod = True if "Y" in input("Delete " + file + "? y/n: ").upper() else False
+                if deleteMod:
+                    os.remove(file)
+                    print("MCreator mod " + file + " has been deleted.")
+                else:
+                    print("MCreator mod " + file + " was not deleted.")
+        j = 0
+        if deletePossibleMods:
+            for file in possibleMcreatorMods:
+                deleteMod = True if "Y" in input("Delete " + file + "? It has a " +str(round(possibleMcreatorModsprob[j] * 100)) + "% chance of being MCreator. y/n: ").upper() else False
+                if deleteMod:
+                    os.remove(file)
+                    print("Possible MCreator mod " + file + " has been deleted.")
+                else:
+                    print("Possible MCreator mod " + file + " was not deleted.")
+            j = j + 1
+        #The ultimate verdict after being prompted to remove mcreator mods
+        print("+" + find_whitespace(mostCharsB + 5, "line") + "+\n")
+        print("ULTIMATE VERDICT:")
+        if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
+            print("YOU  NEED TO LET GO. YOU HAVE A PROBLEM. At this point, you're doing this on purpose. Stop it, get some help.")
+            webbrowser.open("https://www.youtube.com/watch?v=xhV_GMslNkc")
+        elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
+            print("...Removing only a few of these types of mods is not going to help you. You really should run this again.")
+            webbrowser.open("https://www.youtube.com/watch?v=NzishIREebw")
+        elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
+            print("I hope you know what you're doing.")
+            webbrowser.open("https://www.youtube.com/watch?v=0vEfDtV1MQU")
+        elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
+            print("Better... Let's hope!")
+            webbrowser.open("https://www.youtube.com/watch?v=yDSNJr__OiQ")
+        elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
+            print("Good job, this might just work now.")
+            webbrowser.open("https://www.youtube.com/watch?v=aAwaxTGnkSk")
+        else:
+            print("YOU HAVE BEEN FREED OF MCREATOR WOO!!!")
+            webbrowser.open("https://www.youtube.com/watch?v=CBEvfZu4HE4")
 
+#A function to help create lines for the console GUI. takes the amount of whitespace, and the type of whitespace you want to create for said line
 def find_whitespace(whitespace, type):
     result = ""
     if type == "line":

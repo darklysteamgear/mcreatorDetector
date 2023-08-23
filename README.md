@@ -6,6 +6,8 @@ The MCreator detector is a tool you can use to track down MCreator mods in your 
 ## How it works
 This simple python script when run in the command line will search through all of your mod files, and look for classes and directories in the jars of each of your mods to determine what mods you have downloaded are MCreator mods. The results may shock you, that's why I also added a final verdict system to really make you feel worse about the MCreator mods you downloaded.
 
+As well as this, it has it's own fun console GUI system thing, and can now delete MCreator mods when prompted!
+
 ![Bruh_meme_banner](https://github.com/darklysteamgear/mcreatorDetector/assets/61528531/84c37ebe-5464-4e0b-851d-bdf543a07b21)
 ###### POV: You learn the mod you made 200+ quests for was made in MCreator, and is causing preformance issues
 

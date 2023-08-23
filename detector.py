@@ -89,23 +89,23 @@ def find_mcreator_mods(moddir):
                 print ("| " + str(number) + ") " + stupidmod + find_whitespace(mostCharsB-stupidsize,"empty") + "| CHANCE: "+str(round(possibleMcreatorModsprob[i] * 100)) + "%")
                 i=i+ 1
             print("+" + find_whitespace(mostCharsB+5,"line") + "+\n")
-            print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
-            print("FINAL VERDICT:")
-            if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
-                print("You really need to rethink your life choices. That's just, A LOT OF MCREATOR MODS. stop it. get some help. Nobody is going to want to play this PC killer.")
-                webbrowser.open("https://www.youtube.com/watch?v=l60MnDJklnM")
-            elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
-                print("Make sure to read the descriptions and comments on the mods you are adding. You have too many MCreator mods installed, and you will have preformance issues.")
-                webbrowser.open("https://www.youtube.com/watch?v=5W-J6iPyZmM")
-            elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
-                print("That's quite a few potential MCreator mods. Think about what you want to remove.")
-                webbrowser.open("https://www.youtube.com/watch?v=HAoQdrwFK8U")
-            elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
-                print("You have a few potential MCreator mods. please note that they more often then not cause preformance issues.")
-                webbrowser.open("https://www.youtube.com/watch?v=LISrjmodGSE")
-            elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
-                print("You have one MCreator mod. It may be the sole cause of your preformance issues. Try to remove it if you are having issues.")
-                webbrowser.open("https://www.youtube.com/watch?v=KnhXwlFeRP8")
+        print("TOTAL OF " +str(len(possibleMcreatorMods) + len(mcreatorMods)) +  " POSSIBLE MCREATOR MODS\n")
+        print("FINAL VERDICT:")
+        if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
+            print("You really need to rethink your life choices. That's just, A LOT OF MCREATOR MODS. stop it. get some help. Nobody is going to want to play this PC killer.")
+            webbrowser.open("https://www.youtube.com/watch?v=l60MnDJklnM")
+        elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
+            print("Make sure to read the descriptions and comments on the mods you are adding. You have too many MCreator mods installed, and you will have preformance issues.")
+            webbrowser.open("https://www.youtube.com/watch?v=5W-J6iPyZmM")
+        elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
+            print("That's quite a few potential MCreator mods. Think about what you want to remove.")
+            webbrowser.open("https://www.youtube.com/watch?v=HAoQdrwFK8U")
+        elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
+            print("You have a few potential MCreator mods. please note that they more often then not cause preformance issues.")
+            webbrowser.open("https://www.youtube.com/watch?v=LISrjmodGSE")
+        elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
+            print("You have one MCreator mod. It may be the sole cause of your preformance issues. Try to remove it if you are having issues.")
+            webbrowser.open("https://www.youtube.com/watch?v=KnhXwlFeRP8")
 
         print("=" + find_whitespace(mostChars, "equal") + "=\n")
 

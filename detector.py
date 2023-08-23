@@ -146,11 +146,17 @@ def find_mcreator_mods(moddir):
             deleteMods = True if "Y" in input("Delete MCreator mods from your mods list? (You will be prompted for each mod). You have " + str(len(mcreatorMods)) + " MCreator mods. y/n: ").upper() else False
         if possibleMcreatorMods:
             deletePossibleMods = True if "Y" in input("Delete Possible MCreator mods from your mods list? (You will be prompted for each mod). You have " + str(len(possibleMcreatorMods)) + " Possible MCreator mods. y/n: ").upper() else False
+        #Added some subtractor value to cheat instead of messing with the array I already have.I should have used classes instead of just trying to write this all in one giant blob.
+        #Because there is no self in single method python scripts, only globals
+        #My Code OCD is not handling this very well. but it just works and that's good enough for me.
+        sub = 0
         if deleteMods:
+            mcreatorNew = mcreatorMods
             for file in mcreatorMods:
                 deleteMod = True if "Y" in input("Delete " + file + "? y/n: ").upper() else False
                 if deleteMod:
                     os.remove(file)
+                    sub = sub + 1
                     print("MCreator mod " + file + " has been deleted.")
                 else:
                     print("MCreator mod " + file + " was not deleted.")
@@ -161,25 +167,26 @@ def find_mcreator_mods(moddir):
                 if deleteMod:
                     os.remove(file)
                     print("Possible MCreator mod " + file + " has been deleted.")
+                    sub = sub + 1
                 else:
                     print("Possible MCreator mod " + file + " was not deleted.")
-            j = j + 1
+                j = j + 1
         #The ultimate verdict after being prompted to remove mcreator mods
         print("+" + find_whitespace(mostCharsB + 5, "line") + "+\n")
         print("ULTIMATE VERDICT:")
-        if len(possibleMcreatorMods) + len(mcreatorMods) >= 16:
+        if len(possibleMcreatorMods) + len(mcreatorMods) - sub >= 16:
             print("YOU  NEED TO LET GO. YOU HAVE A PROBLEM. At this point, you're doing this on purpose. Stop it, get some help.")
             webbrowser.open("https://www.youtube.com/watch?v=xhV_GMslNkc")
-        elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 15:
+        elif 8 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 15:
             print("...Removing only a few of these types of mods is not going to help you. You really should run this again.")
             webbrowser.open("https://www.youtube.com/watch?v=NzishIREebw")
-        elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 8:
+        elif 3 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 8:
             print("I hope you know what you're doing.")
             webbrowser.open("https://www.youtube.com/watch?v=0vEfDtV1MQU")
-        elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods)) <= 3:
+        elif 1 < (len(possibleMcreatorMods) + len(mcreatorMods))- sub <= 3:
             print("Better... Let's hope!")
             webbrowser.open("https://www.youtube.com/watch?v=yDSNJr__OiQ")
-        elif (len(possibleMcreatorMods) + len(mcreatorMods)) == 1:
+        elif (len(possibleMcreatorMods) + len(mcreatorMods))- sub == 1:
             print("Good job, this might just work now.")
             webbrowser.open("https://www.youtube.com/watch?v=aAwaxTGnkSk")
         else:
